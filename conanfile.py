@@ -1,5 +1,5 @@
 from conans import ConanFile, Meson, tools
-
+import os
 
 class OrcConan(ConanFile):
     name = "orc"
@@ -7,10 +7,11 @@ class OrcConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     license = "LGPL-2.1"
     description = "Optimized Inner Loop Runtime Compiler"
+    generators = "pkgconf"
 
     def build_requirements(self):
-        self.build_requires("generators/1.0.0@%s/stable" % self.user)
-        self.build_requires("meson/[>=0.51.2]@%s/stable" % self.user)
+        self.build_requires("generators/1.0.0@camposs/stable")
+        self.build_requires("meson/[>=0.51.2]@camposs/stable")
 
     def source(self):
         tools.get("https://github.com/GStreamer/orc/archive/%s.tar.gz" % self.version)
